@@ -9,13 +9,13 @@ export default function SingleCustomer() {
     const [customers, setCustomers] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8000/customers')
+        fetch('https://mohamednabil1213.github.io/jsonServer/db.json')
             .then((res) => res.json())
-            .then((data) => setCustomers(data));
+            .then((data) => setCustomers(data.customers));
     }, []);
 
     return (
-        <div className="container mx-auto mt-8">
+        <div className="container">
             <div className="flex justify-center">
                 {customers.filter((customer) => customer.id == parseInt(id)).map((customer) => {
                     return <>

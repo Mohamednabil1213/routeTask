@@ -14,12 +14,12 @@ export default function Home() {
     }, []);
 
     const fetchData = () => {
-        fetch('http://localhost:8000/customers')
+        fetch('https://mohamednabil1213.github.io/jsonServer/db.json')
             .then((res) => res.json())
-            .then((data) => setCustomers(data));
-        fetch('http://localhost:8000/transactions')
+            .then((data) => setCustomers(data.customers));
+        fetch('https://mohamednabil1213.github.io/jsonServer/db.json')
             .then((res) => res.json())
-            .then((data) => setTrans(data));
+            .then((data) => setTrans(data.transactions));
     };
 
     const onSearchChange = (e) => {
@@ -34,10 +34,10 @@ export default function Home() {
             fetchData();
             return;
         }
-        fetch('http://localhost:8000/transactions')
+        fetch('https://mohamednabil1213.github.io/jsonServer/db.json')
             .then((res) => res.json())
             .then((data) => {
-                const filteredData = data.filter((item) => {
+                const filteredData = data.transactions.filter((item) => {
                     const customer = customers.find(c => c.id == item.customer_id);
                     return (
                         item.amount == search ||
@@ -52,7 +52,7 @@ export default function Home() {
         <>
             <div className='container'>
                 <h1 className='text-center text-white'>Transaction Table</h1>
-                <MDBInputGroup className='d-flex justify-content-center w-100 H-100'>
+                <MDBInputGroup className='d-flex justify-content-center w-100 h-100'>
                     <input
                         className='mt-2 me-2 bar bg-white rounded-2'
                         placeholder='Search by Amount or Name'
@@ -75,7 +75,7 @@ export default function Home() {
                 >
                     <thead>
                         <tr>
-                            <th className='bg-black text-white' style={{ border: '1px solid white' }}>ID</th>
+                            <th className='bg-black text-white' style={{ border: '1px solid white' }}>Transaction ID</th>
                             <th className='bg-black text-white' style={{ border: '1px solid white' }}>Customer ID</th>
                             <th className='bg-black text-white' style={{ border: '1px solid white' }}>Name</th>
                             <th className='bg-black text-white' style={{ border: '1px solid white' }}>Date</th>
